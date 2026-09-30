@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Upload Profile Image</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="min-h-screen bg-gray-100 flex items-center justify-center p-6">
+
+    <div class="w-full max-w-md">
+
+        <!-- Card -->
+        <div class="bg-white rounded-2xl shadow-lg border border-gray-200 p-4">
+
+            <!-- Heading -->
+            <div class="text-center mb-8">
+
+                <h2 class="text-2xl font-bold text-gray-800">
+                    Upload Image
+                </h2>
+
+                <p class="text-sm text-gray-500 mt-2">
+                    Choose an image to upload
+                </p>
+
+            </div>
+
+
+            <!-- Image<!-- Image Preview -->
+            <div class="flex justify-center mb-6">
+
+                {% if image and image.profile_image %}
+
+                <!-- Uploaded Image -->
+                <div class="relative">
+
+                    <img src="{{ image.profile_image.url }}" alt="Profile Image" class="w-[200px] h-[200px]
+                       object-cover rounded-sm
+                       border-4 border-indigo-100
+                       shadow-md">
+
+                </div>
+
+                {% else %}
+
+                <!-- No Image -->
+                <div class="w-[200px] h-[200px]
+                    rounded-full bg-gray-100
+                    border-4 border-indigo-200
+                    shadow-md">
+                </div>
+
+                {% endif %}
+
+            </div>
+
+
+
+            <!-- Upload Form -->
+            <form method="POST" enctype="multipart/form-data">
+
+                {% csrf_token %}
+
+
+                <!-- File Input -->
+                <div class="mb-6">
+
+                    <label for="profile_image" class="block text-sm font-semibold text-gray-700 mb-2">
+
+                        Choose Image
+
+                    </label>
+
+                    <input id="profile_image" type="file" name="profile_image" accept="image/jpeg,image/png,image/jpg"
+                        required class="w-full border border-gray-300 rounded-lg
+                               px-3 py-2.5 text-sm bg-white
+                               cursor-pointer
+                               focus:outline-none
+                               focus:ring-2
+                               focus:ring-indigo-500
+                               focus:border-indigo-500">
+
+                    <p class="text-xs text-gray-500 mt-2">
+                        JPG, JPEG or PNG • Recommended size 500×500px
+                    </p>
+
+                </div>
+
+
+                <!-- Upload Button -->
+                <button type="submit" class="w-full bg-indigo-600
+                           hover:bg-indigo-700
+                           text-white font-semibold
+                           py-3 rounded-lg
+                           transition duration-200
+                           shadow-sm hover:shadow-md">
+
+                    Upload Image
+
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+</body>
+
+</html>
